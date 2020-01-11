@@ -45,3 +45,6 @@ gem 'figaro'
 
 # rest-client
 gem 'rest-client'
+
+# serializer for API
+gem 'active_model_serializers'

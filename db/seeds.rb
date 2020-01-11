@@ -56,6 +56,7 @@ require 'base64'
   # Create Playlist Objects
     @kanye_playlist = Playlist.create(displayName: "Kanye's Complete Collection", spotifyName: parsed_kanye_playlist_1["name"], spotifyDescription: parsed_kanye_playlist_1["description"], spotifyId: parsed_kanye_playlist_1["id"], spotifyUri: parsed_kanye_playlist_1["uri"])
 
+    
 
   # Create tracks by mapping over parsed playlist objects
   # need to figure out how to get all artists for the spotifyArtists column
