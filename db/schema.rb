@@ -28,8 +28,7 @@ ActiveRecord::Schema.define(version: 2020_01_10_212539) do
   create_table "tracks", force: :cascade do |t|
     t.string "spotifyAlbum"
     t.string "spotifyArtists"
-    t.string "spotifyDurationMs"
-    t.string "integer"
+    t.integer "spotifyDurationMs"
     t.string "spotifyHref"
     t.string "spotifyId"
     t.string "spotifyName"

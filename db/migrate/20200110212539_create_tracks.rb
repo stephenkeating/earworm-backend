@@ -3,8 +3,7 @@ class CreateTracks < ActiveRecord::Migration[6.0]
     create_table :tracks do |t|
       t.string :spotifyAlbum
       t.string :spotifyArtists
-      t.string :spotifyDurationMs
-      t.string :integer
+      t.integer :spotifyDurationMs
       t.string :spotifyHref
       t.string :spotifyId
       t.string :spotifyName
