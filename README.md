@@ -11,18 +11,18 @@ Fields I want from a Spotify playlist:
 
 Fields I want from a Spotify track:
   spotifyAlbum:string  <!-- e.g. parsed_kanye_playlist['tracks']['items'][0]['track']['album']['id'] -->
-  artists:string    <!-- to get just the Spotify artist id: parsed_kanye_playlist['tracks']['items'][0]['track']['artists'][0]['id'] -->
-  duration_ms:integer
-  href:string   <!-- (A link to the Web API endpoint providing full details of the track.) -->
-  id:string   <!-- (The Spotify ID for the track.) -->
-  name:string
-  popularity:integer
-  preview_url:string
-  uri:string
+  spotifyArtists:string    <!-- e.g. will have to map in here, but Spotify artist id: parsed_kanye_playlist['tracks']['items'][0]['track']['artists'][0]['id'] -->
+  spotifyDurationMs:integer
+  spotifyHref:string   <!-- (A link to the Web API endpoint providing full details of the track.) -->
+  spotifyId:string   <!-- (The Spotify ID for the track.) -->
+  spotifyName:string
+  spotifyPopularity:integer
+  spotifyPreviewUrl:string
+  spotifyUri:string
   playlist:references
 
-also, give the track a playlist_id foreign key
 
+Ruby methods to keep in mind if I need to convert an object to a string and back:
 album.to_s makes a string
 eval(album.to_us) turns it back into an object
 
