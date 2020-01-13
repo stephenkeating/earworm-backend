@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
 
   def index
+    # post-mvp: exclude skits
     @playlists = Playlist.all
     render json: @playlists, include: "**"
   end
