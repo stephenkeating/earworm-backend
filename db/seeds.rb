@@ -28,6 +28,8 @@ require 'base64'
         kanye_playlist_url_2 = 'https://api.spotify.com/v1/playlists/7nTVBKlpid6ifbk0q3AWOP/tracks?offset=100'
       # Rolling Stone Top 500 Songs
       # Spotify Top Tracks?
+      # This Is Spice Girls 
+        spice_girls_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DWWUJdr9ahsbf'
 
   
   
@@ -38,11 +40,16 @@ require 'base64'
     kanye_playlist_object_2 = `curl -X GET #{kanye_playlist_url_2} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
     parsed_kanye_playlist_2 = JSON.parse(kanye_playlist_object_2)
 
+    spice_girls_object = `curl -X GET #{spice_girls_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    parsed_spice_girls_playlist = JSON.parse(spice_girls_object)
+
     # byebug
 
   # map over the individual tracks by calling: parsed_kanye_playlist_1['tracks']['items']
     kanye_playlist_tracks_1 = parsed_kanye_playlist_1['tracks']['items']
     kanye_playlist_tracks_2 = parsed_kanye_playlist_2['items']
+
+    spice_girls_tracks = parsed_spice_girls_playlist['tracks']['items']
 
     # kanye_playlist_tracks_1[0].keys ==> ["added_at", "added_by", "is_local", "primary_color", "track", "video_thumbnail"]
     # while looping over tracks, will have to call track["track"] to get down to data
@@ -55,6 +62,7 @@ require 'base64'
 
   # Create Playlist Objects
     @kanye_playlist = Playlist.create(displayName: "Kanye's Complete Collection", spotifyName: parsed_kanye_playlist_1["name"], spotifyDescription: parsed_kanye_playlist_1["description"], spotifyId: parsed_kanye_playlist_1["id"], spotifyUri: parsed_kanye_playlist_1["uri"])
+    @spice_girls_playlist = Playlist.create(displayName: "This is Spice Girls", spotifyName: parsed_spice_girls_playlist["name"], spotifyDescription: parsed_spice_girls_playlist["description"], spotifyId: parsed_spice_girls_playlist["id"], spotifyUri: parsed_spice_girls_playlist["uri"])
 
     
 
@@ -66,6 +74,9 @@ require 'base64'
     end 
     kanye_playlist_tracks_2.map do |track|
       Track.create(playlist: @kanye_playlist, spotifyAlbum: track["track"]["album"], spotifyArtists: track['track']['artists'], spotifyDurationMs: track['track']['duration_ms'], spotifyHref: track['track']['href'], spotifyId: track['track']['id'], spotifyName: track['track']['name'], spotifyPopularity: track['track']['popularity'], spotifyPreviewUrl: track['track']['preview_url'], spotifyUri: track['track']['uri'])
+    end 
+    spice_girls_tracks.map do |track|
+      Track.create(playlist: @spice_girls_playlist, spotifyAlbum: track["track"]["album"], spotifyArtists: track['track']['artists'], spotifyDurationMs: track['track']['duration_ms'], spotifyHref: track['track']['href'], spotifyId: track['track']['id'], spotifyName: track['track']['name'], spotifyPopularity: track['track']['popularity'], spotifyPreviewUrl: track['track']['preview_url'], spotifyUri: track['track']['uri'])
     end 
 
   # byebug
