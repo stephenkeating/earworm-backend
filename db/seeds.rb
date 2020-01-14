@@ -30,6 +30,8 @@ require 'base64'
       # Spotify Top Tracks?
       # This Is Spice Girls 
         spice_girls_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DWWUJdr9ahsbf'
+      # 2000s Smash Hits spotify:playlist:2f6tXtN0XesjONxicAzMIw
+        two_thousands_smash_hits_url = 'https://api.spotify.com/v1/playlists/2f6tXtN0XesjONxicAzMIw'
 
   
   
@@ -43,6 +45,9 @@ require 'base64'
     spice_girls_object = `curl -X GET #{spice_girls_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
     parsed_spice_girls_playlist = JSON.parse(spice_girls_object)
 
+    two_thousands_smash_hits_object = `curl -X GET #{two_thousands_smash_hits_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    parsed_two_thousands_smash_hits_playlist = JSON.parse(two_thousands_smash_hits_object)
+
     # byebug
 
   # map over the individual tracks by calling: parsed_kanye_playlist_1['tracks']['items']
@@ -51,6 +56,8 @@ require 'base64'
 
     spice_girls_tracks = parsed_spice_girls_playlist['tracks']['items']
 
+    two_thousands_smash_hits_tracks = parsed_two_thousands_smash_hits_playlist['tracks']['items']
+    
     # kanye_playlist_tracks_1[0].keys ==> ["added_at", "added_by", "is_local", "primary_color", "track", "video_thumbnail"]
     # while looping over tracks, will have to call track["track"] to get down to data
     # kanye_playlist_tracks_1[0]['track'].keys == > ["album", "artists", "available_markets", "disc_number", "duration_ms", "episode", "explicit", "external_ids", "external_urls", "href", "id", "is_local", "name", "popularity", "preview_url", "track", "track_number", "type", "uri"]
@@ -63,6 +70,7 @@ require 'base64'
   # Create Playlist Objects
     @kanye_playlist = Playlist.create(displayName: "Kanye's Complete Collection", spotifyName: parsed_kanye_playlist_1["name"], spotifyDescription: parsed_kanye_playlist_1["description"], spotifyId: parsed_kanye_playlist_1["id"], spotifyUri: parsed_kanye_playlist_1["uri"])
     @spice_girls_playlist = Playlist.create(displayName: "This is Spice Girls", spotifyName: parsed_spice_girls_playlist["name"], spotifyDescription: parsed_spice_girls_playlist["description"], spotifyId: parsed_spice_girls_playlist["id"], spotifyUri: parsed_spice_girls_playlist["uri"])
+    @two_thousands_smash_hits_playlist = Playlist.create(displayName: "2000s Smash Hits", spotifyName: parsed_two_thousands_smash_hits_playlist["name"], spotifyDescription: parsed_two_thousands_smash_hits_playlist["description"], spotifyId: parsed_two_thousands_smash_hits_playlist["id"], spotifyUri: parsed_two_thousands_smash_hits_playlist["uri"])
 
     
 
@@ -77,6 +85,9 @@ require 'base64'
     end 
     spice_girls_tracks.map do |track|
       Track.create(playlist: @spice_girls_playlist, spotifyAlbum: track["track"]["album"], spotifyArtists: track['track']['artists'], spotifyDurationMs: track['track']['duration_ms'], spotifyHref: track['track']['href'], spotifyId: track['track']['id'], spotifyName: track['track']['name'], spotifyPopularity: track['track']['popularity'], spotifyPreviewUrl: track['track']['preview_url'], spotifyUri: track['track']['uri'])
+    end 
+    two_thousands_smash_hits_tracks.map do |track|
+      Track.create(playlist: @two_thousands_smash_hits_playlist, spotifyAlbum: track["track"]["album"], spotifyArtists: track['track']['artists'], spotifyDurationMs: track['track']['duration_ms'], spotifyHref: track['track']['href'], spotifyId: track['track']['id'], spotifyName: track['track']['name'], spotifyPopularity: track['track']['popularity'], spotifyPreviewUrl: track['track']['preview_url'], spotifyUri: track['track']['uri'])
     end 
 
   # byebug
