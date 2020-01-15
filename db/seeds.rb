@@ -41,7 +41,9 @@ require 'base64'
         araiana_grande_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX1PfYnYcpw8w' 
       # This Is The Beatles spotify:playlist:37i9dQZF1DXdLtD0qszB1w
         the_beatles_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DXdLtD0qszB1w' 
-      # This Is Elton John
+      # This Is Elton John spotify:playlist:37i9dQZF1DX7VulteLVOkq
+        elton_john_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX7VulteLVOkq' 
+
   
     kanye_playlist_object_1 = `curl -X GET #{kanye_playlist_url_1} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
     parsed_kanye_playlist_1 = JSON.parse(kanye_playlist_object_1)
@@ -70,6 +72,11 @@ require 'base64'
     
     the_beatles_object = `curl -X GET #{the_beatles_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
     parsed_the_beatles_playlist = JSON.parse(the_beatles_object)
+    
+    elton_john_object = `curl -X GET #{elton_john_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    parsed_elton_john_playlist = JSON.parse(elton_john_object)
+
+
     # byebug
 
   # map over the individual tracks by calling: parsed_kanye_playlist_1['tracks']['items']
@@ -88,6 +95,8 @@ require 'base64'
     araiana_grande_tracks = parsed_araiana_grande_playlist['tracks']['items']
 
     the_beatles_tracks = parsed_the_beatles_playlist['tracks']['items']
+    
+    elton_john_tracks = parsed_elton_john_playlist['tracks']['items']
     
     # kanye_playlist_tracks_1[0].keys ==> ["added_at", "added_by", "is_local", "primary_color", "track", "video_thumbnail"]
     # while looping over tracks, will have to call track["track"] to get down to data
@@ -108,6 +117,7 @@ require 'base64'
     @two_thousands_smash_hits_playlist = Playlist.create(displayName: "2000s Smash Hits", spotifyName: parsed_two_thousands_smash_hits_playlist["name"], spotifyDescription: parsed_two_thousands_smash_hits_playlist["description"], spotifyId: parsed_two_thousands_smash_hits_playlist["id"], spotifyUri: parsed_two_thousands_smash_hits_playlist["uri"])
     @ariana_grande_playlist = Playlist.create(displayName: "This is Ariana Grande", spotifyName: parsed_araiana_grande_playlist["name"], spotifyDescription: parsed_araiana_grande_playlist["description"], spotifyId: parsed_araiana_grande_playlist["id"], spotifyUri: parsed_araiana_grande_playlist["uri"])
     @the_beatles_playlist = Playlist.create(displayName: "This is The Beatles", spotifyName: parsed_the_beatles_playlist["name"], spotifyDescription: parsed_the_beatles_playlist["description"], spotifyId: parsed_the_beatles_playlist["id"], spotifyUri: parsed_the_beatles_playlist["uri"])
+    @elton_john_playlist = Playlist.create(displayName: "This is Elton John", spotifyName: parsed_elton_john_playlist["name"], spotifyDescription: parsed_elton_john_playlist["description"], spotifyId: parsed_elton_john_playlist["id"], spotifyUri: parsed_elton_john_playlist["uri"])
 
   # Create tracks by mapping over parsed playlist objects
   # later, I could try to figure out how to get all artists for the spotifyArtists column
@@ -142,4 +152,7 @@ require 'base64'
     end 
     the_beatles_tracks.map do |track|
       Track.create(playlist: @the_beatles_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
+    end 
+    elton_john_tracks.map do |track|
+      Track.create(playlist: @elton_john_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
     end 
