@@ -1,15 +1,10 @@
 class CreateTracks < ActiveRecord::Migration[6.0]
   def change
     create_table :tracks do |t|
-      t.string :spotifyAlbum
-      t.string :spotifyArtists
-      t.integer :spotifyDurationMs
-      t.string :spotifyHref
-      t.string :spotifyId
-      t.string :spotifyName
-      t.integer :spotifyPopularity
-      t.string :spotifyPreviewUrl
-      t.string :spotifyUri
+      t.string :artists
+      t.string :spotify_id
+      t.string :name
+      t.string :preview_url
       t.references :playlist, null: false, foreign_key: true
 
       t.timestamps

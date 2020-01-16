@@ -1,3 +1,3 @@
 class TrackSerializer < ActiveModel::Serializer
-  attributes :id, :spotifyAlbum, :spotifyArtists, :spotifyDurationMs, :spotifyHref, :spotifyId, :spotifyName, :spotifyPopularity, :spotifyPreviewUrl, :spotifyUri, :playlist_id
+  attributes :id, :spotify_id, :artists, :name, :preview_url, :playlist_id
 end

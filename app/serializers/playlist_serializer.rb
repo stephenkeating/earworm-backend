@@ -1,4 +1,4 @@
 class PlaylistSerializer < ActiveModel::Serializer
-  attributes :id, :displayName, :spotifyName, :spotifyDescription, :spotifyId, :spotifyUri
+  attributes :id, :name, :spotify_id
   has_many :tracks
 end

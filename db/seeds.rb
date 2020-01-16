@@ -110,14 +110,14 @@ require 'base64'
   # Create Playlist Objects
     # first one has more info than I need:
       # @kanye_playlist = Playlist.create(displayName: "Kanye's Complete Collection", spotifyName: parsed_kanye_playlist_1["name"], spotifyDescription: parsed_kanye_playlist_1["description"], spotifyId: parsed_kanye_playlist_1["id"], spotifyUri: parsed_kanye_playlist_1["uri"])
-    @kanye_playlist = Playlist.create(displayName: "Kanye's Complete Collection", spotifyName: parsed_kanye_playlist_1["name"], spotifyDescription: parsed_kanye_playlist_1["description"], spotifyId: parsed_kanye_playlist_1["id"], spotifyUri: parsed_kanye_playlist_1["uri"])
-    @spice_girls_playlist = Playlist.create(displayName: "This is Spice Girls", spotifyName: parsed_spice_girls_playlist["name"], spotifyDescription: parsed_spice_girls_playlist["description"], spotifyId: parsed_spice_girls_playlist["id"], spotifyUri: parsed_spice_girls_playlist["uri"])
-    @eighties_smash_hits_playlist = Playlist.create(displayName: "80s Smash Hits", spotifyName: parsed_eighties_smash_hits_playlist["name"], spotifyDescription: parsed_eighties_smash_hits_playlist["description"], spotifyId: parsed_eighties_smash_hits_playlist["id"], spotifyUri: parsed_eighties_smash_hits_playlist["uri"])
-    @nineties_smash_hits_playlist = Playlist.create(displayName: "90s Smash Hits", spotifyName: parsed_nineties_smash_hits_playlist_1["name"], spotifyDescription: parsed_two_thousands_smash_hits_playlist["description"], spotifyId: parsed_two_thousands_smash_hits_playlist["id"], spotifyUri: parsed_two_thousands_smash_hits_playlist["uri"])
-    @two_thousands_smash_hits_playlist = Playlist.create(displayName: "2000s Smash Hits", spotifyName: parsed_two_thousands_smash_hits_playlist["name"], spotifyDescription: parsed_two_thousands_smash_hits_playlist["description"], spotifyId: parsed_two_thousands_smash_hits_playlist["id"], spotifyUri: parsed_two_thousands_smash_hits_playlist["uri"])
-    @ariana_grande_playlist = Playlist.create(displayName: "This is Ariana Grande", spotifyName: parsed_araiana_grande_playlist["name"], spotifyDescription: parsed_araiana_grande_playlist["description"], spotifyId: parsed_araiana_grande_playlist["id"], spotifyUri: parsed_araiana_grande_playlist["uri"])
-    @the_beatles_playlist = Playlist.create(displayName: "This is The Beatles", spotifyName: parsed_the_beatles_playlist["name"], spotifyDescription: parsed_the_beatles_playlist["description"], spotifyId: parsed_the_beatles_playlist["id"], spotifyUri: parsed_the_beatles_playlist["uri"])
-    @elton_john_playlist = Playlist.create(displayName: "This is Elton John", spotifyName: parsed_elton_john_playlist["name"], spotifyDescription: parsed_elton_john_playlist["description"], spotifyId: parsed_elton_john_playlist["id"], spotifyUri: parsed_elton_john_playlist["uri"])
+    @kanye_playlist = Playlist.create(name: parsed_kanye_playlist_1["name"], spotify_id: parsed_kanye_playlist_1["id"])
+    @spice_girls_playlist = Playlist.create(name: parsed_spice_girls_playlist["name"], spotify_id: parsed_spice_girls_playlist["id"])
+    @eighties_smash_hits_playlist = Playlist.create(name: parsed_eighties_smash_hits_playlist["name"], spotify_id: parsed_eighties_smash_hits_playlist["id"])
+    @nineties_smash_hits_playlist = Playlist.create(name: parsed_nineties_smash_hits_playlist_1["name"], spotify_id: parsed_two_thousands_smash_hits_playlist["id"])
+    @two_thousands_smash_hits_playlist = Playlist.create(name: parsed_two_thousands_smash_hits_playlist["name"], spotify_id: parsed_two_thousands_smash_hits_playlist["id"])
+    @ariana_grande_playlist = Playlist.create(name: parsed_araiana_grande_playlist["name"], spotify_id: parsed_araiana_grande_playlist["id"])
+    @the_beatles_playlist = Playlist.create(name: parsed_the_beatles_playlist["name"], spotify_id: parsed_the_beatles_playlist["id"])
+    @elton_john_playlist = Playlist.create(name: parsed_elton_john_playlist["name"], spotify_id: parsed_elton_john_playlist["id"])
 
   # Create tracks by mapping over parsed playlist objects
   # later, I could try to figure out how to get all artists for the spotifyArtists column
@@ -127,32 +127,32 @@ require 'base64'
       #   Track.create(playlist: @kanye_playlist, spotifyAlbum: track["track"]["album"], spotifyArtists: track['track']['artists'], spotifyDurationMs: track['track']['duration_ms'], spotifyHref: track['track']['href'], spotifyId: track['track']['id'], spotifyName: track['track']['name'], spotifyPopularity: track['track']['popularity'], spotifyPreviewUrl: track['track']['preview_url'], spotifyUri: track['track']['uri'])
       # end 
     kanye_playlist_tracks_1.map do |track|
-      Track.create(playlist: @kanye_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
+      Track.create(playlist: @kanye_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end 
     kanye_playlist_tracks_2.map do |track|
-      Track.create(playlist: @kanye_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
+      Track.create(playlist: @kanye_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end 
     spice_girls_tracks.map do |track|
-      Track.create(playlist: @spice_girls_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
+      Track.create(playlist: @spice_girls_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end
     eighties_smash_hits_tracks.map do |track|
-      Track.create(playlist: @eighties_smash_hits_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
+      Track.create(playlist: @eighties_smash_hits_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end
     nineties_smash_hits_tracks_1.map do |track|
-      Track.create(playlist: @nineties_smash_hits_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
+      Track.create(playlist: @nineties_smash_hits_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end 
     nineties_smash_hits_tracks_2.map do |track|
-      Track.create(playlist: @nineties_smash_hits_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
+      Track.create(playlist: @nineties_smash_hits_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end 
     two_thousands_smash_hits_tracks.map do |track|
-      Track.create(playlist: @two_thousands_smash_hits_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
+      Track.create(playlist: @two_thousands_smash_hits_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end 
     araiana_grande_tracks.map do |track|
-      Track.create(playlist: @ariana_grande_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
+      Track.create(playlist: @ariana_grande_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end 
     the_beatles_tracks.map do |track|
-      Track.create(playlist: @the_beatles_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
+      Track.create(playlist: @the_beatles_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end 
     elton_john_tracks.map do |track|
-      Track.create(playlist: @elton_john_playlist, spotifyArtists: track['track']['artists'][0]['name'], spotifyName: track['track']['name'], spotifyId: track['track']['id'])
+      Track.create(playlist: @elton_john_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end 
