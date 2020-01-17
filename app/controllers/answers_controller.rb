@@ -30,7 +30,7 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.permit(:user)
+    params.permit(:game_id, :track_id, :outcome)
   end
 
 end
