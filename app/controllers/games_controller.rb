@@ -16,6 +16,7 @@ class GamesController < ApplicationController
   end
 
   def update
+    @game = Game.find(params[:id])
     @game.update(game_params)
 
     render json: @game
@@ -30,7 +31,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.permit(:game_id, :track_id, :outcome)
+    params.permit(:user, :playlist_id)
   end
 
 end

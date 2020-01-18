@@ -27,8 +27,10 @@ ActiveRecord::Schema.define(version: 2020_01_16_172350) do
 
   create_table "games", force: :cascade do |t|
     t.string "user"
+    t.bigint "playlist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["playlist_id"], name: "index_games_on_playlist_id"
   end
 
   create_table "playlists", force: :cascade do |t|
@@ -51,5 +53,6 @@ ActiveRecord::Schema.define(version: 2020_01_16_172350) do
 
   add_foreign_key "answers", "games"
   add_foreign_key "answers", "tracks"
+  add_foreign_key "games", "playlists"
   add_foreign_key "tracks", "playlists"
 end

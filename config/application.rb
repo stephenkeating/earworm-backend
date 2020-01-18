@@ -39,7 +39,7 @@ module EarwormBackend
       allow do
         origins '*'
         # remember to update the methods here if I need to add delete/destroy for fetches
-        resource '*', headers: :any, methods: [:get, :post, :options]
+        resource '*', headers: :any, methods: [:get, :post, :put, :options]
       end
     end
 
