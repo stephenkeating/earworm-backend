@@ -49,7 +49,15 @@ require 'base64'
       # This Is Jay Z spotify:playlist:37i9dQZF1DX7jGZjyDa8rI
         # jayz_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX7jGZjyDa8rI'
       # I Love My 90s Hip Hop spotify:playlist:37i9dQZF1DX186v583rmzp
-        nineties_hip_hop_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX186v583rmzp'
+        # nineties_hip_hop_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX186v583rmzp'
+      # 70s Smash Hits spotify:playlist:5KmBulox9POMt9hOt3VV1x
+        # seventies_smash_hits_url_1 = 'https://api.spotify.com/v1/playlists/5KmBulox9POMt9hOt3VV1x'
+        # seventies_smash_hits_url_2 = 'https://api.spotify.com/v1/playlists/5KmBulox9POMt9hOt3VV1x/tracks?offset=100'
+      # 2010s Smash Hits spotify:playlist:1tPWTwuxOLsE2Do1JQSUxA
+        # twenty_tens_smash_hits_url_1 = 'https://api.spotify.com/v1/playlists/1tPWTwuxOLsE2Do1JQSUxA'
+        # twenty_tens_smash_hits_url_2 = 'https://api.spotify.com/v1/playlists/1tPWTwuxOLsE2Do1JQSUxA/tracks?offset=100'
+      # Top Tracks of 2019 spotify:playlist:37i9dQZF1DXcz8eC5kMSWZ
+        twenty_nineteen_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DXcz8eC5kMSWZ'
 
   
     # kanye_playlist_object_1 = `curl -X GET #{kanye_playlist_url_1} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
@@ -92,8 +100,23 @@ require 'base64'
     # jayz_object = `curl -X GET #{jayz_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
     # parsed_jayz_playlist = JSON.parse(jayz_object)
     
-    nineties_hip_hop_object = `curl -X GET #{nineties_hip_hop_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
-    parsed_nineties_hip_hop_playlist = JSON.parse(nineties_hip_hop_object)
+    # nineties_hip_hop_object = `curl -X GET #{nineties_hip_hop_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_nineties_hip_hop_playlist = JSON.parse(nineties_hip_hop_object)
+
+    # seventies_smash_hits_object_1 = `curl -X GET #{seventies_smash_hits_url_1} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_seventies_smash_hits_playlist_1 = JSON.parse(seventies_smash_hits_object_1)
+
+    # seventies_smash_hits_object_2 = `curl -X GET #{seventies_smash_hits_url_2} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_seventies_smash_hits_playlist_2 = JSON.parse(seventies_smash_hits_object_2)
+    
+    # twenty_tens_smash_hits_object_1 = `curl -X GET #{twenty_tens_smash_hits_url_1} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_twenty_tens_smash_hits_playlist_1 = JSON.parse(twenty_tens_smash_hits_object_1)
+
+    # twenty_tens_smash_hits_object_2 = `curl -X GET #{twenty_tens_smash_hits_url_2} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_twenty_tens_smash_hits_playlist_2 = JSON.parse(twenty_tens_smash_hits_object_2)
+        
+    twenty_nineteen_object = `curl -X GET #{twenty_nineteen_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    parsed_twenty_nineteen_playlist = JSON.parse(twenty_nineteen_object)
 
     # byebug
 
@@ -111,8 +134,13 @@ require 'base64'
     # rock_classics_tracks_1 = parsed_rock_classics_playlist_1['tracks']['items']
     #   rock_classics_tracks_2 = parsed_rock_classics_playlist_2['items']
     # jayz_tracks = parsed_jayz_playlist['tracks']['items']
-    nineties_hip_hop_tracks = parsed_nineties_hip_hop_playlist['tracks']['items']
-
+    # nineties_hip_hop_tracks = parsed_nineties_hip_hop_playlist['tracks']['items']
+    # seventies_smash_hits_tracks_1 = parsed_seventies_smash_hits_playlist_1['tracks']['items']
+    #   seventies_smash_hits_tracks_2 = parsed_seventies_smash_hits_playlist_2['items']
+    # twenty_tens_smash_hits_tracks_1 = parsed_twenty_tens_smash_hits_playlist_1['tracks']['items']
+    #   twenty_tens_smash_hits_tracks_2 = parsed_twenty_tens_smash_hits_playlist_2['items']
+    twenty_nineteen_tracks = parsed_twenty_nineteen_playlist['tracks']['items']
+    
     # FYI:
     # kanye_playlist_tracks_1[0].keys ==> ["added_at", "added_by", "is_local", "primary_color", "track", "video_thumbnail"]
     # while looping over tracks, will have to call track["track"] to get down to data
@@ -120,8 +148,8 @@ require 'base64'
 
     # byebug
 
-  # Clear the playlists for re-seeding
-    # Playlist.destroy_all
+  # Clear the playlists if I want to re-seed everything. Don't do this!!
+    # DONT DO THIS!!!!! Playlist.destroy_all
 
   # Create Playlist Objects
     # This example has more info than I need (and columns no longer match schema):
@@ -136,7 +164,10 @@ require 'base64'
     # @elton_john_playlist = Playlist.create(name: parsed_elton_john_playlist["name"], spotify_id: parsed_elton_john_playlist["id"])
     # @rock_classics_playlist = Playlist.create(name: parsed_rock_classics_playlist_1["name"], spotify_id: parsed_rock_classics_playlist_1["id"])
     # @jayz_playlist = Playlist.create(name: parsed_jayz_playlist["name"], spotify_id: parsed_jayz_playlist["id"])
-    @nineties_hip_hop_playlist = Playlist.create(name: parsed_nineties_hip_hop_playlist["name"], spotify_id: parsed_nineties_hip_hop_playlist["id"])
+    # @nineties_hip_hop_playlist = Playlist.create(name: parsed_nineties_hip_hop_playlist["name"], spotify_id: parsed_nineties_hip_hop_playlist["id"])
+    # @seventies_smash_hits_playlist = Playlist.create(name: parsed_seventies_smash_hits_playlist_1["name"], spotify_id: parsed_seventies_smash_hits_playlist_1["id"])
+    # @twenty_tens_smash_hits_playlist = Playlist.create(name: parsed_twenty_tens_smash_hits_playlist_1["name"], spotify_id: parsed_twenty_tens_smash_hits_playlist_1["id"])
+    @twenty_nineteen_playlist = Playlist.create(name: parsed_twenty_nineteen_playlist["name"], spotify_id: parsed_twenty_nineteen_playlist["id"])
     
   # Create tracks by mapping over parsed playlist objects
   # later, I could try to figure out how to get all artists for the spotifyArtists column
@@ -184,6 +215,21 @@ require 'base64'
     # jayz_tracks.map do |track|
     #   Track.create(playlist: @jayz_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     # end 
-    nineties_hip_hop_tracks.map do |track|
-      Track.create(playlist: @nineties_hip_hop_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # nineties_hip_hop_tracks.map do |track|
+    #   Track.create(playlist: @nineties_hip_hop_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end
+    # seventies_smash_hits_tracks_1.map do |track|
+    #   Track.create(playlist: @seventies_smash_hits_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # seventies_smash_hits_tracks_2.map do |track|
+    #   Track.create(playlist: @seventies_smash_hits_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # twenty_tens_smash_hits_tracks_1.map do |track|
+    #   Track.create(playlist: @twenty_tens_smash_hits_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # twenty_tens_smash_hits_tracks_2.map do |track|
+    #   Track.create(playlist: @twenty_tens_smash_hits_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    twenty_nineteen_tracks.map do |track|
+      Track.create(playlist: @twenty_nineteen_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end 
