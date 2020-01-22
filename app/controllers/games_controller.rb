@@ -1,8 +1,8 @@
 class GamesController < ApplicationController
-  attr_accessor :score
+  # attr_accessor :score
 
   def index
-    @games = Game.all
+    @games = Game.all.where.not(user: nil)
     render json: @games, include: "**"
   end
 
