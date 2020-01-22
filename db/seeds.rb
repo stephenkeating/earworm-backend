@@ -45,7 +45,11 @@ require 'base64'
         # elton_john_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX7VulteLVOkq' 
       # Rock Classics spotify:playlist:37i9dQZF1DWXRqgorJj26U
         # rock_classics_url_1 = 'https://api.spotify.com/v1/playlists/37i9dQZF1DWXRqgorJj26U' 
-        # rock_classics_url_2 = 'https://api.spotify.com/v1/playlists/37i9dQZF1DWXRqgorJj26U/tracks?offset=100' 
+        # rock_classics_url_2 = 'https://api.spotify.com/v1/playlists/37i9dQZF1DWXRqgorJj26U/tracks?offset=100'
+      # This Is Jay Z spotify:playlist:37i9dQZF1DX7jGZjyDa8rI
+        # jayz_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX7jGZjyDa8rI'
+      # I Love My 90s Hip Hop spotify:playlist:37i9dQZF1DX186v583rmzp
+        nineties_hip_hop_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX186v583rmzp'
 
   
     # kanye_playlist_object_1 = `curl -X GET #{kanye_playlist_url_1} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
@@ -85,6 +89,11 @@ require 'base64'
     # rock_classics_object_2 = `curl -X GET #{rock_classics_url_2} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
     # parsed_rock_classics_playlist_2 = JSON.parse(rock_classics_object_2)
 
+    # jayz_object = `curl -X GET #{jayz_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_jayz_playlist = JSON.parse(jayz_object)
+    
+    nineties_hip_hop_object = `curl -X GET #{nineties_hip_hop_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    parsed_nineties_hip_hop_playlist = JSON.parse(nineties_hip_hop_object)
 
     # byebug
 
@@ -101,7 +110,9 @@ require 'base64'
     # elton_john_tracks = parsed_elton_john_playlist['tracks']['items']
     # rock_classics_tracks_1 = parsed_rock_classics_playlist_1['tracks']['items']
     #   rock_classics_tracks_2 = parsed_rock_classics_playlist_2['items']
-    
+    # jayz_tracks = parsed_jayz_playlist['tracks']['items']
+    nineties_hip_hop_tracks = parsed_nineties_hip_hop_playlist['tracks']['items']
+
     # FYI:
     # kanye_playlist_tracks_1[0].keys ==> ["added_at", "added_by", "is_local", "primary_color", "track", "video_thumbnail"]
     # while looping over tracks, will have to call track["track"] to get down to data
@@ -124,7 +135,9 @@ require 'base64'
     # @the_beatles_playlist = Playlist.create(name: parsed_the_beatles_playlist["name"], spotify_id: parsed_the_beatles_playlist["id"])
     # @elton_john_playlist = Playlist.create(name: parsed_elton_john_playlist["name"], spotify_id: parsed_elton_john_playlist["id"])
     # @rock_classics_playlist = Playlist.create(name: parsed_rock_classics_playlist_1["name"], spotify_id: parsed_rock_classics_playlist_1["id"])
-
+    # @jayz_playlist = Playlist.create(name: parsed_jayz_playlist["name"], spotify_id: parsed_jayz_playlist["id"])
+    @nineties_hip_hop_playlist = Playlist.create(name: parsed_nineties_hip_hop_playlist["name"], spotify_id: parsed_nineties_hip_hop_playlist["id"])
+    
   # Create tracks by mapping over parsed playlist objects
   # later, I could try to figure out how to get all artists for the spotifyArtists column
   # preview URLs are not coming in. i think it has to do with the client credentials auth
@@ -168,3 +181,9 @@ require 'base64'
     # rock_classics_tracks_2.map do |track|
     #   Track.create(playlist: @rock_classics_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     # end 
+    # jayz_tracks.map do |track|
+    #   Track.create(playlist: @jayz_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    nineties_hip_hop_tracks.map do |track|
+      Track.create(playlist: @nineties_hip_hop_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    end 
