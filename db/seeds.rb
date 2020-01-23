@@ -70,7 +70,12 @@ require 'base64'
       # Divas spotify:playlist:37i9dQZF1DXdcTa08t5TxQ
         # divas_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DXdcTa08t5TxQ'
       # This is Drake spotify:playlist:37i9dQZF1DX7QOv5kjbU68
-        drake_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX7QOv5kjbU68'
+        # drake_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX7QOv5kjbU68'
+      # 100 Greatest TV Themes spotify:playlist:1LWHJxOF4WAbJC167TQ5PC
+        # tv_themes_url = 'https://api.spotify.com/v1/playlists/1LWHJxOF4WAbJC167TQ5PC'
+      # Third Wave Ska Covers of 80s Pop Songs spotify:playlist:5DyUjHjy3DGluiJ2vwRiT9
+        # ska_covers_url = 'https://api.spotify.com/v1/playlists/5DyUjHjy3DGluiJ2vwRiT9'
+        
         
     # kanye_playlist_object_1 = `curl -X GET #{kanye_playlist_url_1} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
     # parsed_kanye_playlist_1 = JSON.parse(kanye_playlist_object_1)
@@ -157,8 +162,14 @@ require 'base64'
     # divas_object = `curl -X GET #{divas_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
     # parsed_divas_playlist = JSON.parse(divas_object)
 
-    drake_object = `curl -X GET #{drake_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
-    parsed_drake_playlist = JSON.parse(drake_object)
+    # drake_object = `curl -X GET #{drake_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_drake_playlist = JSON.parse(drake_object)
+
+    # tv_themes_object = `curl -X GET #{tv_themes_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_tv_themes_playlist = JSON.parse(tv_themes_object)
+
+    # ska_covers_object = `curl -X GET #{ska_covers_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_ska_covers_playlist = JSON.parse(ska_covers_object)
 
     # byebug
 
@@ -191,7 +202,9 @@ require 'base64'
     #   five_hundred_greatest_tracks_5 = parsed_five_hundred_greatest_playlist_5['items']
     #   five_hundred_greatest_tracks_6 = parsed_five_hundred_greatest_playlist_6['items']
     # divas_tracks = parsed_divas_playlist['tracks']['items']
-    drake_tracks = parsed_drake_playlist['tracks']['items']
+    # drake_tracks = parsed_drake_playlist['tracks']['items']
+    # tv_themes_tracks = parsed_tv_themes_playlist['tracks']['items']
+    # ska_covers_tracks = parsed_ska_covers_playlist['tracks']['items']
 
     # FYI:
     # kanye_playlist_tracks_1[0].keys ==> ["added_at", "added_by", "is_local", "primary_color", "track", "video_thumbnail"]
@@ -224,7 +237,9 @@ require 'base64'
     # @nineties_boy_bands_playlist = Playlist.create(name: parsed_nineties_boy_bands_playlist["name"], spotify_id: parsed_nineties_boy_bands_playlist["id"])
     # @five_hundred_greatest_playlist = Playlist.create(name: parsed_five_hundred_greatest_playlist_1["name"], spotify_id: parsed_five_hundred_greatest_playlist_1["id"])
     # @divas_playlist = Playlist.create(name: parsed_divas_playlist["name"], spotify_id: parsed_divas_playlist["id"])
-    @drake_playlist = Playlist.create(name: parsed_drake_playlist["name"], spotify_id: parsed_drake_playlist["id"])
+    # @drake_playlist = Playlist.create(name: parsed_drake_playlist["name"], spotify_id: parsed_drake_playlist["id"])
+    # @tv_themes_playlist = Playlist.create(name: parsed_tv_themes_playlist["name"], spotify_id: parsed_tv_themes_playlist["id"])
+    # @ska_covers_playlist = Playlist.create(name: parsed_ska_covers_playlist["name"], spotify_id: parsed_ska_covers_playlist["id"])
 
   # Create tracks by mapping over parsed playlist objects
   # later, I could try to figure out how to get all artists for the spotifyArtists column
@@ -317,6 +332,12 @@ require 'base64'
     # divas_tracks.map do |track|
     #   Track.create(playlist: @divas_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     # end 
-    drake_tracks.map do |track|
-      Track.create(playlist: @drake_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
-    end 
+    # drake_tracks.map do |track|
+    #   Track.create(playlist: @drake_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # tv_themes_tracks.map do |track|
+    #   Track.create(playlist: @tv_themes_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # ska_covers_tracks.map do |track|
+    #   Track.create(playlist: @ska_covers_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
