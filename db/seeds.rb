@@ -26,8 +26,6 @@ require 'base64'
       # Kanye West's Complete Collection  spotify:playlist:7nTVBKlpid6ifbk0q3AWOP
         # kanye_playlist_url_1 = 'https://api.spotify.com/v1/playlists/7nTVBKlpid6ifbk0q3AWOP'
         # kanye_playlist_url_2 = 'https://api.spotify.com/v1/playlists/7nTVBKlpid6ifbk0q3AWOP/tracks?offset=100'
-      # Rolling Stone Top 500 Songs  spotify:playlist:6RxsseYlyxrkJOOmAOLQTM
-      # Spotify Top Tracks?
       # This Is Spice Girls 
         # spice_girls_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DWWUJdr9ahsbf'
       # 80s Smash Hits spotify:playlist:19PgP2QSGPcm6Ve8VhbtpG
@@ -57,9 +55,23 @@ require 'base64'
         # twenty_tens_smash_hits_url_1 = 'https://api.spotify.com/v1/playlists/1tPWTwuxOLsE2Do1JQSUxA'
         # twenty_tens_smash_hits_url_2 = 'https://api.spotify.com/v1/playlists/1tPWTwuxOLsE2Do1JQSUxA/tracks?offset=100'
       # Top Tracks of 2019 spotify:playlist:37i9dQZF1DXcz8eC5kMSWZ
-        twenty_nineteen_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DXcz8eC5kMSWZ'
-
-  
+        # twenty_nineteen_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DXcz8eC5kMSWZ'
+      # Disney Hits spotify:playlist:37i9dQZF1DX8C9xQcOrE6T
+        # disney_hits_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX8C9xQcOrE6T'
+      # 90s Boy Bands spotify:playlist:4z2BDgB00VBT6wv1Pn4t5w
+        # nineties_boy_bands_url = 'https://api.spotify.com/v1/playlists/4z2BDgB00VBT6wv1Pn4t5w'
+      # Rolling Stone's 500 Greatest Songs (2010 update) spotify:playlist:33jXjzOGlYJcnHhARPj4LK
+        # five_hundred_greatest_url_1 = 'https://api.spotify.com/v1/playlists/33jXjzOGlYJcnHhARPj4LK'
+        # five_hundred_greatest_url_2 = 'https://api.spotify.com/v1/playlists/33jXjzOGlYJcnHhARPj4LK/tracks?offset=100'
+        # five_hundred_greatest_url_3 = 'https://api.spotify.com/v1/playlists/33jXjzOGlYJcnHhARPj4LK/tracks?offset=200'
+        # five_hundred_greatest_url_4 = 'https://api.spotify.com/v1/playlists/33jXjzOGlYJcnHhARPj4LK/tracks?offset=300'
+        # five_hundred_greatest_url_5 = 'https://api.spotify.com/v1/playlists/33jXjzOGlYJcnHhARPj4LK/tracks?offset=400'
+        # five_hundred_greatest_url_6 = 'https://api.spotify.com/v1/playlists/33jXjzOGlYJcnHhARPj4LK/tracks?offset=500'
+      # Divas spotify:playlist:37i9dQZF1DXdcTa08t5TxQ
+        # divas_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DXdcTa08t5TxQ'
+      # This is Drake spotify:playlist:37i9dQZF1DX7QOv5kjbU68
+        drake_url = 'https://api.spotify.com/v1/playlists/37i9dQZF1DX7QOv5kjbU68'
+        
     # kanye_playlist_object_1 = `curl -X GET #{kanye_playlist_url_1} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
     # parsed_kanye_playlist_1 = JSON.parse(kanye_playlist_object_1)
       # FYI: parsed_kanye_playlist_1.keys ==> ["collaborative", "description", "external_urls", "followers", "href", "id", "images", "name", "owner", "primary_color", "public", "snapshot_id", "tracks", "type", "uri"]
@@ -114,9 +126,39 @@ require 'base64'
 
     # twenty_tens_smash_hits_object_2 = `curl -X GET #{twenty_tens_smash_hits_url_2} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
     # parsed_twenty_tens_smash_hits_playlist_2 = JSON.parse(twenty_tens_smash_hits_object_2)
-        
-    twenty_nineteen_object = `curl -X GET #{twenty_nineteen_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
-    parsed_twenty_nineteen_playlist = JSON.parse(twenty_nineteen_object)
+    
+    # twenty_nineteen_object = `curl -X GET #{twenty_nineteen_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_twenty_nineteen_playlist = JSON.parse(twenty_nineteen_object)
+    
+    # disney_hits_object = `curl -X GET #{disney_hits_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_disney_hits_playlist = JSON.parse(disney_hits_object)
+    
+    # nineties_boy_bands_object = `curl -X GET #{nineties_boy_bands_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_nineties_boy_bands_playlist = JSON.parse(nineties_boy_bands_object)
+
+    # five_hundred_greatest_object_1 = `curl -X GET #{five_hundred_greatest_url_1} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_five_hundred_greatest_playlist_1 = JSON.parse(five_hundred_greatest_object_1)
+
+    # five_hundred_greatest_object_2 = `curl -X GET #{five_hundred_greatest_url_2} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_five_hundred_greatest_playlist_2 = JSON.parse(five_hundred_greatest_object_2)
+
+    # five_hundred_greatest_object_3 = `curl -X GET #{five_hundred_greatest_url_3} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_five_hundred_greatest_playlist_3 = JSON.parse(five_hundred_greatest_object_3)
+
+    # five_hundred_greatest_object_4 = `curl -X GET #{five_hundred_greatest_url_4} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_five_hundred_greatest_playlist_4 = JSON.parse(five_hundred_greatest_object_4)
+
+    # five_hundred_greatest_object_5 = `curl -X GET #{five_hundred_greatest_url_5} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_five_hundred_greatest_playlist_5 = JSON.parse(five_hundred_greatest_object_5)
+
+    # five_hundred_greatest_object_6 = `curl -X GET #{five_hundred_greatest_url_6} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_five_hundred_greatest_playlist_6 = JSON.parse(five_hundred_greatest_object_6)
+
+    # divas_object = `curl -X GET #{divas_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    # parsed_divas_playlist = JSON.parse(divas_object)
+
+    drake_object = `curl -X GET #{drake_url} -H "Authorization: Bearer #{parsed_token["access_token"]}"`
+    parsed_drake_playlist = JSON.parse(drake_object)
 
     # byebug
 
@@ -139,8 +181,18 @@ require 'base64'
     #   seventies_smash_hits_tracks_2 = parsed_seventies_smash_hits_playlist_2['items']
     # twenty_tens_smash_hits_tracks_1 = parsed_twenty_tens_smash_hits_playlist_1['tracks']['items']
     #   twenty_tens_smash_hits_tracks_2 = parsed_twenty_tens_smash_hits_playlist_2['items']
-    twenty_nineteen_tracks = parsed_twenty_nineteen_playlist['tracks']['items']
-    
+    # twenty_nineteen_tracks = parsed_twenty_nineteen_playlist['tracks']['items']
+    # disney_hits_tracks = parsed_disney_hits_playlist['tracks']['items']
+    # nineties_boy_bands_tracks = parsed_nineties_boy_bands_playlist['tracks']['items']
+    # five_hundred_greatest_tracks_1 = parsed_five_hundred_greatest_playlist_1['tracks']['items']
+    #   five_hundred_greatest_tracks_2 = parsed_five_hundred_greatest_playlist_2['items']
+    #   five_hundred_greatest_tracks_3 = parsed_five_hundred_greatest_playlist_3['items']
+    #   five_hundred_greatest_tracks_4 = parsed_five_hundred_greatest_playlist_4['items']
+    #   five_hundred_greatest_tracks_5 = parsed_five_hundred_greatest_playlist_5['items']
+    #   five_hundred_greatest_tracks_6 = parsed_five_hundred_greatest_playlist_6['items']
+    # divas_tracks = parsed_divas_playlist['tracks']['items']
+    drake_tracks = parsed_drake_playlist['tracks']['items']
+
     # FYI:
     # kanye_playlist_tracks_1[0].keys ==> ["added_at", "added_by", "is_local", "primary_color", "track", "video_thumbnail"]
     # while looping over tracks, will have to call track["track"] to get down to data
@@ -167,8 +219,13 @@ require 'base64'
     # @nineties_hip_hop_playlist = Playlist.create(name: parsed_nineties_hip_hop_playlist["name"], spotify_id: parsed_nineties_hip_hop_playlist["id"])
     # @seventies_smash_hits_playlist = Playlist.create(name: parsed_seventies_smash_hits_playlist_1["name"], spotify_id: parsed_seventies_smash_hits_playlist_1["id"])
     # @twenty_tens_smash_hits_playlist = Playlist.create(name: parsed_twenty_tens_smash_hits_playlist_1["name"], spotify_id: parsed_twenty_tens_smash_hits_playlist_1["id"])
-    @twenty_nineteen_playlist = Playlist.create(name: parsed_twenty_nineteen_playlist["name"], spotify_id: parsed_twenty_nineteen_playlist["id"])
-    
+    # @twenty_nineteen_playlist = Playlist.create(name: parsed_twenty_nineteen_playlist["name"], spotify_id: parsed_twenty_nineteen_playlist["id"])
+    # @disney_hits_playlist = Playlist.create(name: parsed_disney_hits_playlist["name"], spotify_id: parsed_disney_hits_playlist["id"])
+    # @nineties_boy_bands_playlist = Playlist.create(name: parsed_nineties_boy_bands_playlist["name"], spotify_id: parsed_nineties_boy_bands_playlist["id"])
+    # @five_hundred_greatest_playlist = Playlist.create(name: parsed_five_hundred_greatest_playlist_1["name"], spotify_id: parsed_five_hundred_greatest_playlist_1["id"])
+    # @divas_playlist = Playlist.create(name: parsed_divas_playlist["name"], spotify_id: parsed_divas_playlist["id"])
+    @drake_playlist = Playlist.create(name: parsed_drake_playlist["name"], spotify_id: parsed_drake_playlist["id"])
+
   # Create tracks by mapping over parsed playlist objects
   # later, I could try to figure out how to get all artists for the spotifyArtists column
   # preview URLs are not coming in. i think it has to do with the client credentials auth
@@ -230,6 +287,36 @@ require 'base64'
     # twenty_tens_smash_hits_tracks_2.map do |track|
     #   Track.create(playlist: @twenty_tens_smash_hits_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     # end 
-    twenty_nineteen_tracks.map do |track|
-      Track.create(playlist: @twenty_nineteen_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # twenty_nineteen_tracks.map do |track|
+    #   Track.create(playlist: @twenty_nineteen_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # disney_hits_tracks.map do |track|
+    #   Track.create(playlist: @disney_hits_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # nineties_boy_bands_tracks.map do |track|
+    #   Track.create(playlist: @nineties_boy_bands_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # five_hundred_greatest_tracks_1.map do |track|
+    #   Track.create(playlist: @five_hundred_greatest_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # five_hundred_greatest_tracks_2.map do |track|
+    #   Track.create(playlist: @five_hundred_greatest_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # five_hundred_greatest_tracks_3.map do |track|
+    #   Track.create(playlist: @five_hundred_greatest_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # five_hundred_greatest_tracks_4.map do |track|
+    #   Track.create(playlist: @five_hundred_greatest_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # five_hundred_greatest_tracks_5.map do |track|
+    #   Track.create(playlist: @five_hundred_greatest_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # five_hundred_greatest_tracks_6.map do |track|
+    #   Track.create(playlist: @five_hundred_greatest_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    # divas_tracks.map do |track|
+    #   Track.create(playlist: @divas_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
+    # end 
+    drake_tracks.map do |track|
+      Track.create(playlist: @drake_playlist, artists: track['track']['artists'][0]['name'], name: track['track']['name'], spotify_id: track['track']['id'])
     end 
