@@ -1,29 +1,34 @@
-# README
-
-Notes:
-
-Fields I want from a Spotify playlist:
-  displayName:string
-  spotifyName:string
-  spotifyDescription:string
-  spotifyId:string
-  spotifyUri:string
-
-Fields I want from a Spotify track:
-  spotifyAlbum:string  <!-- e.g. parsed_kanye_playlist['tracks']['items'][0]['track']['album']['id'] -->
-  spotifyArtists:string    <!-- e.g. will have to map in here, but Spotify artist id: parsed_kanye_playlist['tracks']['items'][0]['track']['artists'][0]['id'] -->
-  spotifyDurationMs:integer
-  spotifyHref:string   <!-- (A link to the Web API endpoint providing full details of the track.) -->
-  spotifyId:string   <!-- (The Spotify ID for the track.) -->
-  spotifyName:string
-  spotifyPopularity:integer
-  spotifyPreviewUrl:string
-  spotifyUri:string
-  playlist:references
+# EARWORM README
 
 
-Ruby methods to keep in mind if I need to convert an object to a string and back:
-album.to_s makes a string
-eval(album.to_us) turns it back into an object
+Tech Used:
+* React.js
+* Spotify APIs
+* PostgreSQL
+* Ruby on Rails API
+* Custom HTML/CSS
+* Jaro-Winkler algorithm
+
+Difficult:
+* String matching for guesses
+* Spotify APIs
+
+Additional Features to Add:
+* Autoplay (Spotify SDK)
+* Allow User to Import Playlists
+* Multiplayer
+* More string matching
+* Data mining, such as statistics per play/track. (I have the data, just need to display it)
 
 
+
+Logo Credit:
+Ear by Robert A. Di Ieso, US 
+https://thenounproject.com/search/?q=Ear&i=659545
+
+Design Advice:
+Andrew Peet 
+http://www.pdoubleet.com/
+
+Thanks to Flatiron School DUMBO Instructors and Coaches:
+Graham Troyer-Joy, Nicky Dover, Annie Souza, Eric Kim, Ian Hollander
