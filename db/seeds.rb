@@ -7,8 +7,10 @@ require 'base64'
     # https://developer.spotify.com/documentation/general/guides/authorization-guide/#client-credentials-flow
   # Base URL: https://api.spotify.com/v1
 
-  spotify_api_client_id = ENV['spotify_api_client_id']
-  spotify_api_key = ENV['spotify_api_key']
+  # spotify_api_client_id = ENV['spotify_api_client_id']
+  # spotify_api_key = ENV['spotify_api_key']
+  spotify_api_client_id = ENV['SPOTIFY_API_CLIENT_ID']
+  spotify_api_key = ENV['SPOTIFY_API_KEY']
 
   client_token = Base64.strict_encode64(spotify_api_client_id + ':' + spotify_api_key)
   spotify_token = RestClient.post("https://accounts.spotify.com/api/token",{"grant_type": "client_credentials"}, {"Authorization": "Basic #{client_token}"})
