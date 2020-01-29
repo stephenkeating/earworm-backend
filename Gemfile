@@ -48,3 +48,7 @@ gem 'rest-client'
 
 # serializer for API
 gem 'active_model_serializers'
+
+# the following are for Heroku deployment:
+gem 'rails_12factor'
+gem 'foreman'
