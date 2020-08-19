@@ -8,8 +8,7 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     # origins 'https://earworm.netlify.com/', 'https://earworm.netlify.app', 'https://master.d3ojzg0sgryvyv.amplifyapp.com'
-    origins 'https://master.d3ojzg0sgryvyv.amplifyapp.com'
-    # origins '*'
+    origins '*'
 
     resource '*',
       headers: :any,
