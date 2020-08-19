@@ -37,7 +37,8 @@ module EarwormBackend
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'https://earworm.netlify.com'
+        # origins 'https://earworm.netlify.com'
+        origins '*'
         # remember to update the methods here if I need to add delete/destroy for fetches
         resource '*', headers: :any, methods: [:get, :post, :put, :options]
       end
